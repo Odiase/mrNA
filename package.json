@@ -1,0 +1,16 @@
+{
+  "name": "opt_token",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@coinbase/wallet-sdk": "^3.7.1",
+    "web3modal": "^1.9.12"
+  }
+}

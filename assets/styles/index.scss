@@ -1,0 +1,361 @@
+// Variables
+$green : rgb(15, 161, 15);
+$header_color : rgba(32, 44, 27, 0.634);
+$dark_green : rgba(2, 50, 2, 0.907);
+$transparent_dark_green: rgba(2, 50, 2, 0.4);
+$black : rgba(11, 15, 9, 0.634);
+$text : rgba(94, 159, 92, 0.634);
+
+*{
+    margin: 0; padding:0;
+    box-sizing: border-box;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Montserrat', sans-serif;
+}
+
+html{
+    font-size: 80%;
+    background-color: $black;
+}
+body{
+    background: $black;
+    color: white;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+  }
+  
+::-webkit-scrollbar-thumb {
+    background-color: $green;
+}
+
+// header styling
+header{
+    padding: 2rem 1.5rem;
+    width: 100%;
+    background-color: $header_color;
+    box-shadow: 1px 1px 10px solid black;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h1{
+        color: $green;
+    }
+
+    div{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+
+        #is_connected_btn{
+            width: 20px;
+            height: 20px;
+            border: none;
+            border-radius: 50%;
+            background: linear-gradient(darkred, orangered);
+            cursor: pointer;
+            margin-right: 3px;
+        }
+    }
+    
+}
+
+// main body
+.main_body{
+    width: 100%;
+    padding: 30px;
+    background-color: $black;
+
+    .token_info{
+        width: 95%;
+        max-width: 900px;
+        margin: auto;
+        border-radius: 12px;
+        background-color: $black;
+        box-shadow: 1px 1px 10px black;
+    }
+    .token_img{
+        width: 100%;
+        height: 400px;
+        border-top-left-radius: 12px;
+        border-top-right-radius: 12px;
+        overflow: hidden;
+        
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .token_info_body{
+        padding: 20px 10px;
+
+        h2{
+            font-size: 2rem;
+            text-align: center;
+
+            span{
+                font-style: oblique;
+                font-weight: lighter;
+            }
+        }
+
+        .text{
+            width: 80%;
+            margin: auto;
+            margin-bottom: 20px;
+            h3{
+                color: $green;
+                font-weight: bolder;
+            }
+            P{
+                text-align: center;
+                font-size: 1.3rem;
+                margin-top: 20px;
+                color: $text;
+                letter-spacing: 3px;
+                line-height: 20px;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: normal;
+
+                b{
+                    text-decoration: underlin;
+                }
+            }
+        }
+
+        h3{
+            font-weight: normal;
+            font-size: 1.6rem;
+            color: $text;
+            margin: auto;
+            margin-top: 20px;
+            text-align: center;
+            max-width: 80%;
+        }
+
+        #connect_wallet{
+            display: block;
+            background-color: $green;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            margin: auto;
+            margin-top: 40px;
+            font-size: 1.3rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: .3s;
+            min-width: 300px;
+
+            &:hover{
+                background-color: $dark_green;
+            }
+        }
+
+        #claim_gr_btn{
+            display: block;
+            background-color: darkgreen;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            margin: auto;
+            margin-top: 40px;
+            font-size: 1.3rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: .3s;
+            min-width: 300px;
+            font-weight: bold;
+
+            &:hover{
+                background-color: $dark_green;
+            }
+        }
+        
+        #disconnect_btn{
+            display: none;
+            background-color: darkred;
+            color: white;
+            border: none;
+            padding: 13px 25px;
+            margin: auto;
+            margin-top: 40px;
+            font-size: 1.3rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: .3s;
+            min-width: 300px;
+
+            &:hover{
+                background-color: gray;
+            }
+        }
+
+        .eligibility{
+            width: 100%;
+            padding: inherit;
+            margin-top: 40px;
+
+            #eligibility_heading{
+                text-align: left;
+                margin-bottom: 10px;
+                font-weight: bold;
+                margin-left: 0;
+            }
+
+            ul{
+                padding: 10px;
+
+                li{
+                    margin-bottom: 10px;
+                    color: $text;
+                    font-weight: 1.2rem;
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+        .realtime_data{
+            h3{
+                margin-bottom: 20px;
+            }
+
+            .outer_cont{
+                padding: 10px;
+
+                .inner_cont{
+                    overflow: auto;
+
+                    .heading{
+                        display: flex;
+                        justify-content: space-between;
+                        margin-bottom: 15px;
+
+                        h4{
+                            font-weight: 600;
+                            color: $text;
+                        }
+                    }
+
+                    .airdrops{
+                        max-height: 200px;
+                        overflow: auto;
+
+                        .single_airdrop{
+                            display: flex;
+                            justify-content: space-between;
+                            margin-bottom: 15px;
+
+                            span{
+                                color: $text;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// connect wallet
+
+.connect_wallet_cont{
+    position: fixed;
+    top: -1000000000000px;left: 0;right: 0;height: 100vh;
+    background-color: rgba(0,0,0,.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: .3s;
+
+    .inner_cont{
+        width: 100%;
+        padding: 10px 25px;
+    }
+
+    h2{
+        text-align: left;
+        margin-bottom: 30px;
+        margin-left: 30px;
+    }
+
+    .wallet_options{
+        width: 90%;
+        margin: auto;
+
+        .wallet{
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+            background-color: $transparent_dark_green;
+            padding: 20px;
+            border-radius: 10px;
+            transition: .3s;
+
+            &:hover{
+                background-color: $dark_green;
+                cursor: pointer;
+            }
+
+            h3{
+                margin-left: 10px;
+                font-weight: normal;
+                font-size: 1.2rem;
+            
+            }
+        }
+    }
+
+    #close_wallet_options{
+        position: absolute;
+        right: 40px;
+        top: 60px;
+        font-size: 2rem;
+        font-weight: normal;
+        transition: .3s;
+
+        &:hover{
+            cursor: pointer;
+            color: rgb(200,200,200);
+        }
+    }
+}
+
+// loader
+.center {
+    background: rgba(0,0,0,.9);
+    display: none;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+.loader {
+    border: 16px solid #f3f3f3; 
+    border-top: 16px solid #34db55; 
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 1s linear infinite;
+}
+.loader_message{
+    margin-top: 30px;
+    text-transform: uppercase;
+    text-align: center;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
