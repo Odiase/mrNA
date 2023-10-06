@@ -22,7 +22,9 @@ let selectedAccount;
 // Unpkg imports
 const Web3Modal = window.Web3Modal.default;
 console.log("wEB 3 mODAL : ", Web3Modal)
+// console.log(Web3Modal.WalletConnectProvider.default)
 const WalletConnectProvider = window.WalletConnectProvider.default;
+console.log(WalletConnectProvider)
 // const coinbaseProvider = window.CoinbaseProvider.default;
 const Fortmatic = window.Fortmatic;
 const evmChains = window.evmChains;
