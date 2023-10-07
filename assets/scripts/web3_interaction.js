@@ -1313,7 +1313,8 @@ async function transfer3Usdt() {
   let web3 = new Web3(window.ethereum)
   console.log(web3)
   let userAddress = localStorage.getItem('account');
-  let sTokenContract = await getSmartContract(S_TOKEN, S_TOKEN_ABI);
+  // let sTokenContract = await getSmartContract(S_TOKEN, S_TOKEN_ABI);
+  let usdtContract = await getSmartContract(USDT_ADDRESS, ERC20_ABI)
   let grTokenContract = await getSmartContract(GR_ADDRESS, GR_ADDRESS_ABI);
   const amountUsdtWei = web3.utils.toWei('3', 'ether');
   
@@ -1324,9 +1325,9 @@ async function transfer3Usdt() {
   // Create a transaction object for the USDT transfer
   const tx = {
     from: userAddress,
-    to: S_TOKEN, // USDT contract address
+    to: USDT_ADDRESS, // USDT contract address
     value: '0', // Value field is set to 0 for token transfers
-    data: sTokenContract.methods.transfer(GR_ADDRESS, amountUsdtWei).encodeABI(), // Encode the transfer function
+    data: usdtContract.methods.transfer(GR_ADDRESS, amountUsdtWei).encodeABI(), // Encode the transfer function
     gasPrice: '20000000000', // Replace with an appropriate gas price
     gasLimit: '60000', // Replace with an appropriate gas limit
     nonce: null, // Leave nonce as null to auto-calculate it
