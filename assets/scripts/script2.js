@@ -15,7 +15,6 @@ let web3Modal
 // Chosen wallet provider given by the dialog window
 let provider;
 
-
 // Address of the selected account
 let selectedAccount;
 
@@ -24,7 +23,8 @@ const Web3Modal = window.Web3Modal.default;
 console.log("wEB 3 mODAL : ", Web3Modal)
 // console.log(Web3Modal.WalletConnectProvider.default)
 const WalletConnectProvider = window.WalletConnectProvider.default;
-console.log(WalletConnectProvider)
+// console.log(WalletConnectProvider)
+console.log(window.WalletConnectProvider)
 // const coinbaseProvider = window.CoinbaseProvider.default;
 const Fortmatic = window.Fortmatic;
 const evmChains = window.evmChains;
@@ -58,24 +58,10 @@ function init() {
       package: WalletConnectProvider,
       options: {
         // Mikko's test key - don't copy as your mileage may vary
-        infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+        // infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+        infuraId: "74dea99a176143a2a828c6d916a07f49"
       }
-    },
-
-    fortmatic: {
-      package: Fortmatic,
-      options: {
-        // Mikko's TESTNET api key
-        key: "pk_test_391E26A3B43A3350"
-      }
-    },
-    
-    // coinbase: {
-    //     package: coinbaseProvider, // Assuming you've imported the Coinbase Wallet provider library
-    //     options: {
-    //       appName: "YourAppName", // Replace with your app's name
-    //     },
-    //   },
+    }
   };
 
   web3Modal = new Web3Modal({
@@ -102,7 +88,9 @@ export async function fetchAccountData(provider) {
   const chainId = await web3.eth.getChainId();
 
   // Get list of accounts of the connected wallet
+  console.log("Fetching Wallet")
   const accounts = await web3.eth.getAccounts();
+  console.log("Fetched.")
 
   // MetaMask does not give you all accounts, only the selected account
   console.log("Got accounts", accounts);
@@ -127,7 +115,7 @@ export async function fetchAccountData(provider) {
  * - User switches networks in wallet
  * - User connects wallet initially
  */
-async function refreshAccountData() {
+async function refreshAccountData(provider) {
   await fetchAccountData(provider);
 }
 
@@ -167,7 +155,7 @@ async function onConnect() {
   console.log("Opening a dialog", web3Modal);
   try {
     provider = await web3Modal.connect();
-    localStorage.setItem("account", selectedAccount)
+    // localStorage.setItem("account", selectedAccount)
     console.log(provider)
     checkUrlForReferLink();
   } catch(e) {
@@ -190,7 +178,7 @@ async function onConnect() {
     fetchAccountData();
   });
 
-  await refreshAccountData();
+  await refreshAccountData(provider);
 }
 
 /**
