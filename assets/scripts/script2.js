@@ -295,4 +295,3 @@ window.addEventListener('load', async () => {
   document.querySelector("#connect_wallet").addEventListener("click", onConnect);
   document.querySelector("#disconnect_btn").addEventListener("click", onDisconnect);
 });
-
